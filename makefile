@@ -9,10 +9,15 @@ Main.o: Main.cpp
 clean:
 	rm -rf enigma test *.o
 
-test: test.o
-	g++ -o test test.o
+test: catch.o ReflectorTest.o Reflector.o
+	g++ -o test catch.o ReflectorTest.o Reflector.o
 	
-test.o: 
-	g++ -c catch.cpp -o test.o
+catch.o: catch.cpp
+
+ReflectorTest.o: ./tests/ReflectorTest.cpp
+	g++ -c ./tests/ReflectorTest.cpp -o ReflectorTest.o
+
+Reflector.o: Reflector.cpp Reflector.hpp
+	g++ -c Reflector.cpp Reflector.hpp
 
 .PHONY: clean
