@@ -7,6 +7,12 @@ Main.o: Main.cpp
 	g++ -c Main.cpp
 
 clean:
-	rm -rf enigma *.o
+	rm -rf enigma test *.o
+
+test: test.o
+	g++ -o test test.o
+	
+test.o: 
+	g++ -c catch.cpp -o test.o
 
 .PHONY: clean
