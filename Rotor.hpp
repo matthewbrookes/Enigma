@@ -8,8 +8,11 @@ class Rotor {
   public:
     Rotor(std::string fileName);
     char getMappedCharacter(char input);
+    std::pair<char, bool> encrypt(char input, bool shouldRotate);
   private:
+    void rotate(void);
     std::unordered_map<char, char> charMap;
+    char rotations = 0;
 };
 
 

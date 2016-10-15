@@ -15,7 +15,7 @@ test: catch.o $(ENIGMAOBJECTS) $(TESTOBJECTS)
 	
 catch.o: catch.cpp
 
-ReflectorTest.o: ./tests/ReflectorTest.cpp Rotor.hpp Rotor.cpp
+ReflectorTest.o: ./tests/ReflectorTest.cpp Reflector.hpp Reflector.cpp
 	g++ -c ./tests/ReflectorTest.cpp -o ReflectorTest.o
 
 Reflector.o: Reflector.cpp Reflector.hpp
