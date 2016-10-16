@@ -6,6 +6,7 @@
 class Plugboard {
   public:
     Plugboard(std::string fileName);
+    char encrypt(char input);
   private:
     std::unordered_map<char, char> charMap;
 };

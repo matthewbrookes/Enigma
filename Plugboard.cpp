@@ -42,3 +42,7 @@ Plugboard::Plugboard(std::string fileName) {
   }
   plugboardFile.close();
 }
+
+char Plugboard::encrypt(char input) {
+  return charMap[input];
+}
