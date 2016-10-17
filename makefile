@@ -15,8 +15,8 @@ test: catch.o $(ENIGMAOBJECTS) $(TESTOBJECTS)
 	
 catch.o: catch.cpp
 
-ReflectorTest.o: ./tests/ReflectorTest.cpp Reflector.hpp Reflector.cpp catch.o
-	g++ -std=c++11 ./tests/ReflectorTest.cpp Reflector.hpp Reflector.cpp catch.o -o ReflectorTest.o
+ReflectorTest.o: ./tests/ReflectorTest.cpp
+	g++ -std=c++11 -c ./tests/ReflectorTest.cpp -o ReflectorTest.o
 
 Reflector.o: Reflector.cpp Reflector.hpp
 	g++ -std=c++11 -c Reflector.cpp Reflector.hpp
@@ -24,13 +24,14 @@ Reflector.o: Reflector.cpp Reflector.hpp
 Rotor.o: Rotor.cpp Rotor.hpp
 	g++ -std=c++11 -c Rotor.cpp Rotor.hpp
 
-RotorTest.o: ./tests/RotorTest.cpp Rotor.hpp Rotor.cpp catch.o
+RotorTest.o: ./tests/RotorTest.cpp
 	g++ -std=c++11 ./tests/RotorTest.cpp Rotor.hpp Rotor.cpp catch.o -o RotorTest.o
+	g++ -std=c++11 -c ./tests/RotorTest.cpp -o RotorTest.o
 
 Plugboard.o: Plugboard.cpp Plugboard.hpp
 	g++ -std=c++11 -c Plugboard.cpp Plugboard.hpp
 
-PlugboardTest.o: ./tests/PlugboardTest.cpp Plugboard.hpp Plugboard.cpp catch.o
-	g++ -std=c++11 ./tests/PlugboardTest.cpp Plugboard.hpp Plugboard.cpp catch.o -o PlugboardTest.o
+PlugboardTest.o: ./tests/PlugboardTest.cpp
+	g++ -std=c++11 -c ./tests/PlugboardTest.cpp -o PlugboardTest.o
 
 .PHONY: clean
