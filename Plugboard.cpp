@@ -3,10 +3,13 @@
 #include <fstream>
 #include <regex>
 
+Plugboard::Plugboard() {
+}
+
 Plugboard::Plugboard(std::string fileName) {
   // Create a hash map mapping from each character to itself
   for (char letter = 'A'; letter <= 'Z'; letter++) {
-    charMap.insert({letter, letter});
+    this->charMap.insert({letter, letter});
   }
   // Open plugboard file
   std::ifstream plugboardFile;
@@ -32,8 +35,8 @@ Plugboard::Plugboard(std::string fileName) {
         // Update character mapping
         char firstLetter = std::stoi(tokens[0]) + 'A';
         char secondLetter = std::stoi(tokens[1]) + 'A';
-        charMap[firstLetter] = secondLetter;
-        charMap[secondLetter] = firstLetter;
+        this->charMap[firstLetter] = secondLetter;
+        this->charMap[secondLetter] = firstLetter;
       }
     }
   } else {
@@ -44,5 +47,5 @@ Plugboard::Plugboard(std::string fileName) {
 }
 
 char Plugboard::encrypt(char input) {
-  return charMap[input];
+  return this->charMap[input];
 }
