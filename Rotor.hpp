@@ -7,12 +7,17 @@
 class Rotor {
   public:
     Rotor(std::string fileName);
-    char getMappedCharacter(char input);
-    std::pair<char, bool> encrypt(char input, bool shouldRotate);
+    char getForwardMappedCharacter(int index);
+    char getBackwardMappedCharacter(int index);
+    char encryptForward(char input);
+    char encryptBackward(char input);
+    bool rotate(void);
+    int rotations = 0;
   private:
-    void rotate(void);
-    std::unordered_map<char, char> charMap;
-    char rotations = 0;
+    std::unordered_map<char, int> forwardWheelMapping;
+    std::unordered_map<char, int> backwardWheelMapping;
+    std::unordered_map<int, char> forwardCharMap;
+    std::unordered_map<int, char> backwardCharMap;
 };
 
 

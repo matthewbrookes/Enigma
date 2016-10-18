@@ -25,7 +25,6 @@ Rotor.o: Rotor.cpp Rotor.hpp
 	g++ -std=c++11 -c Rotor.cpp Rotor.hpp
 
 RotorTest.o: ./tests/RotorTest.cpp
-	g++ -std=c++11 ./tests/RotorTest.cpp Rotor.hpp Rotor.cpp catch.o -o RotorTest.o
 	g++ -std=c++11 -c ./tests/RotorTest.cpp -o RotorTest.o
 
 Plugboard.o: Plugboard.cpp Plugboard.hpp
