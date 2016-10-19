@@ -35,10 +35,9 @@ int main(int argc, char **argv)
   }
 
   Enigma enigma(rotorSet, plugboard, reflector);
-  std::string line;
+  std::string plaintext;
   for (std::string line; std::getline(std::cin >> std::ws, line);) {
     // Walk string checking all letters uppercase
-    std::string plaintext;
     for (char letter: line) {
       if (isupper(letter)) {
         plaintext.push_back(letter);
@@ -47,8 +46,8 @@ int main(int argc, char **argv)
         return 1;
       }
     }
-    // Encrypt and output on stdout
-    std::cout << enigma.encrypt(plaintext) << std::endl;
   }
+  // Encrypt and output on stdout
+  std::cout << enigma.encrypt(plaintext) << std::endl;
   return 0;
 }
