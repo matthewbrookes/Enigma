@@ -35,9 +35,16 @@ int main(int argc, char **argv)
   }
 
   Enigma enigma(rotorSet, plugboard, reflector);
-
-  for (std::string line; std::getline(std::cin, line);) {
-    // Encrypt each line on standard input
+  std::string line;
+  for (std::string line; std::getline(std::cin >> std::ws, line);) {
+    // Walk string checking all letters uppercase
+    for (char letter: line) {
+      if (!(isupper(letter) || isspace(letter))) {
+        std::cerr << "Entered invalid character" << std::endl;
+        return 1;
+      }
+    }
+    // Encrypt line and ouput on stdout
     std::cout << enigma.encrypt(line) << std::endl;
   }
   return 0;
