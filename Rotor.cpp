@@ -56,7 +56,7 @@ bool Rotor::rotate(void) {
   }
   wiringPairs = newWiringPairs;
   rotations++;
-  if (rotations == 25) {
+  if (rotations == 26) {
     rotations = 0;
     return true;
   }
