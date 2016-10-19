@@ -8,15 +8,9 @@ Rotor::Rotor(std::string fileName) {
   std::ifstream rotorFile;
   rotorFile.open(fileName);
   if (rotorFile.is_open()) {
-    // Create forward and backward wheel mapping
-    for (int i = 0; i < 26; i++) {
-      forwardWheelMapping.insert({'A' + i, i});
-      backwardWheelMapping.insert({'A' + i, i});
-    }
-    std::string line = "";
-    char letter = 'A';
     int counter = 0;
     std::regex pair("(\\d+)");
+    std::string line;
     getline(rotorFile, line);
     for (std::sregex_iterator i = std::sregex_iterator(line.begin(),
                                                        line.end(),
@@ -24,8 +18,7 @@ Rotor::Rotor(std::string fileName) {
          i != std::sregex_iterator();
          i++) {
       std::smatch m = *i;
-      forwardCharMap.insert({counter, stoi(m.str()) + 'A'});
-      backwardCharMap.insert({stoi(m.str()), counter + 'A'});
+      wiringPairs.insert({counter, stoi(m.str())});
       counter++;
     }
   } else {
@@ -35,50 +28,35 @@ Rotor::Rotor(std::string fileName) {
   rotorFile.close();
 }
 
-char Rotor::getForwardMappedCharacter(int index) {
-  return forwardCharMap[index];
-}
-
-char Rotor::getBackwardMappedCharacter(int index) {
-  return backwardCharMap.at(index);
-}
-
 char Rotor::encryptForward(char input) {
-  int index = forwardWheelMapping[input];
-  return getForwardMappedCharacter(index);
+  return wiringPairs[input - 'A'] + 'A';
 }
 
 char Rotor::encryptBackward(char input) {
-  int index = backwardWheelMapping[input];
-  return getBackwardMappedCharacter(index);
+  for (int i = 0; i < wiringPairs.size(); i++) {
+    if (wiringPairs[i] == input - 'A') {
+      return i + 'A';
+    }
+  }
+}
+
+int wrapAroundZeroBasedAlphabet(int x) {
+  int range_size = 26;
+  if (x < 0) {
+    x += range_size * ((-x) / range_size + 1);
+  }
+  return x % range_size;
 }
 
 bool Rotor::rotate(void) {
-  // Returns true when completed a full rotation
-  forwardWheelMapping.clear();
-  backwardWheelMapping.clear();
+  std::unordered_map<int, int> newWiringPairs;
+  for (int i = 0; i < 26; i++) {
+    int newTarget = wrapAroundZeroBasedAlphabet(wiringPairs[wrapAroundZeroBasedAlphabet(i + 1)] - 1);
+    newWiringPairs.insert({i, newTarget});
+  }
+  wiringPairs = newWiringPairs;
   rotations++;
-  for (char i='A'; i <= 'Z'; i++) {
-    forwardWheelMapping.insert({i, i - 'A' + rotations});
-    if (i - rotations - 'A' < 0) {
-      backwardWheelMapping.insert({i, 26 - rotations + i - 'A'});
-    } else {
-      backwardWheelMapping.insert({i, (i - 'A' - rotations)});
-    }
-  }
-  std::unordered_map<int, char> newForwardCharMap;
-  newForwardCharMap[0] = forwardCharMap[25];
-  for (int i = 1; i <= 25; i++) {
-    newForwardCharMap[i] = forwardCharMap[i - 1];
-  }
-  forwardCharMap = newForwardCharMap;
-  std::unordered_map<int, char> newBackwardCharMap;
-  for (int i = 0; i < 25; i++) {
-    newBackwardCharMap[i] = backwardCharMap[i + 1];
-  }
-  newBackwardCharMap[25] = backwardCharMap[0];
-  backwardCharMap = newBackwardCharMap;
-  if (rotations == 26) {
+  if (rotations == 25) {
     rotations = 0;
     return true;
   }
