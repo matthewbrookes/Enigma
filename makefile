@@ -1,5 +1,5 @@
-ENIGMAOBJECTS = Rotor.o Reflector.o Plugboard.o
-TESTOBJECTS   = ReflectorTest.o RotorTest.o PlugboardTest.o
+ENIGMAOBJECTS = Rotor.o Reflector.o Plugboard.o Enigma.o
+TESTOBJECTS   = ReflectorTest.o RotorTest.o PlugboardTest.o EnigmaTest.o
 
 enigma: Main.o $(ENIGMAOBJECTS)
 	g++ -std=c++11 -o enigma $(ENIGMAOBJECTS)
@@ -33,4 +33,9 @@ Plugboard.o: Plugboard.cpp Plugboard.hpp
 PlugboardTest.o: ./tests/PlugboardTest.cpp
 	g++ -std=c++11 -c ./tests/PlugboardTest.cpp -o PlugboardTest.o
 
+Enigma.o: Enigma.cpp Enigma.hpp
+	g++ -std=c++11 -c Enigma.cpp Enigma.hpp
+
+EnigmaTest.o: ./tests/EnigmaTest.cpp
+	g++ -std=c++11 -c tests/EnigmaTest.cpp
 .PHONY: clean
