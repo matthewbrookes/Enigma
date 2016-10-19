@@ -38,14 +38,17 @@ int main(int argc, char **argv)
   std::string line;
   for (std::string line; std::getline(std::cin >> std::ws, line);) {
     // Walk string checking all letters uppercase
+    std::string plaintext;
     for (char letter: line) {
-      if (!(isupper(letter) || isspace(letter))) {
+      if (isupper(letter)) {
+        plaintext.push_back(letter);
+      } else if (!isspace(letter)) {
         std::cerr << "Entered invalid character" << std::endl;
         return 1;
       }
     }
-    // Encrypt line and ouput on stdout
-    std::cout << enigma.encrypt(line) << std::endl;
+    // Encrypt and output on stdout
+    std::cout << enigma.encrypt(plaintext) << std::endl;
   }
   return 0;
 }
