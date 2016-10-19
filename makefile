@@ -2,7 +2,7 @@ ENIGMAOBJECTS = Rotor.o Reflector.o Plugboard.o Enigma.o
 TESTOBJECTS   = ReflectorTest.o RotorTest.o PlugboardTest.o EnigmaTest.o
 
 enigma: Main.o $(ENIGMAOBJECTS)
-	g++ -std=c++11 -o enigma $(ENIGMAOBJECTS)
+	g++ -std=c++11 -o enigma Main.o $(ENIGMAOBJECTS)
 
 Main.o: Main.cpp
 	g++ -std=c++11 -c Main.cpp
