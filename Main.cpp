@@ -5,9 +5,13 @@
 
 int main(int argc, char **argv)
 {
-  std::vector<Rotor> rotorSet;
-  Reflector reflector;
+  if (argc < 2) {
+    // No arguments supplied
+    std::cerr << "No arguments supplied" << std::endl;
+    return 1;
+  }
 
+  std::vector<Rotor> rotorSet;
   for (int i = 1; i < argc - 1; i++) {
     // Iterate over arguments pointing to rotors
     char *arg = argv[i];
@@ -16,6 +20,7 @@ int main(int argc, char **argv)
   }
 
   Plugboard plugboard(argv[argc - 1]);
+  Reflector reflector;
 
   Enigma enigma(rotorSet, plugboard, reflector);
 
