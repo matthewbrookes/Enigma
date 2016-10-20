@@ -16,7 +16,6 @@ std::string Enigma::encrypt(std::string plaintext) {
   for (char letter: plaintext) {
     char afterPlugboard = m_plugboard.encrypt(letter);
     char rotorLetter = afterPlugboard;
-    char rotations = 0;
     for (auto it = m_rotorSet.begin(); 
          it != m_rotorSet.end(); 
          ++it) {
