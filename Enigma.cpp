@@ -21,7 +21,6 @@ std::string Enigma::encrypt(std::string plaintext) {
          ++it) {
       rotorLetter = it->encryptForward(rotorLetter);
     }
-    //std::cout << rotorLetter << std::endl;
     char reflectedLetter = m_reflector.reflect(rotorLetter);
     
     rotorLetter = reflectedLetter;

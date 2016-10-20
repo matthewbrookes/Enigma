@@ -51,7 +51,8 @@ int wrapAroundZeroBasedAlphabet(int x) {
 bool Rotor::rotate(void) {
   std::unordered_map<int, int> newWiringPairs;
   for (int i = 0; i < 26; i++) {
-    int newTarget = wrapAroundZeroBasedAlphabet(wiringPairs[wrapAroundZeroBasedAlphabet(i + 1)] - 1);
+    int newTarget = wrapAroundZeroBasedAlphabet(
+                        wiringPairs[wrapAroundZeroBasedAlphabet(i + 1)] - 1);
     newWiringPairs.insert({i, newTarget});
   }
   wiringPairs = newWiringPairs;
