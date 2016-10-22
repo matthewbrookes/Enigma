@@ -1,4 +1,4 @@
-#This the the canonical lab .gitignore file
+#ignore IDE files
 .idea
 CMakeLists.txt
 *.gch
@@ -6,19 +6,8 @@ CMakeLists.txt
 #ignore temp files
 *~
 
-#ignore pdf files (just keep source files)
-*.pdf
-
-#ignore junk files from latex output
-*.out
-*.log
-*.aux
-
 #ignore junk files from compiling C code
 *.o
-
-#ignore junk files from compiling Haskell code
-*.hi
 
 #ignore other junk files
 *.backup
