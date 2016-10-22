@@ -13,6 +13,8 @@ Enter text to encrypt/decrypt in capital letters and press Ctrl-D on a new line.
 ## Configuring Enigma
 There are sample rotor configuration files in rotors/
 and plugboard configuration files in plugboards/
+
+These configuration files were not produced by Matthew Brookes
 ### Configuring Rotors
 Rotors are defined by mapping each letter to another using a zero-based index of the alphabet i.e. 0 = 'A', 1 = 'B'...
 
